@@ -297,3 +297,171 @@ The docker ps and docker images commands both support a filter argument that can
 
 ---
 
+## Ch.6 : Exploring Docker
+
+### Basics
+
+#### Printing the Docker version
+
+The versions between the Docker client and the server can sometime be different. And cause strange errors when they're not compatible. We can check them with :
+```
+docker version
+```
+
+#### Server information
+
+```
+docker info
+```
+
+#### Downloading image updates
+
+```
+docker pull ubuntu:latest
+```
+
+#### Inspecting a container
+
+```
+docker inspect 3c4f916619a5
+```
+
+#### Exploring the shell
+
+```
+docker run -i -t ubuntu:16.04 /bin/bash
+```
+
+#### Returning a result
+
+```
+docker run 8d12decc75fe /bin/false
+```
+
+#### Getting inside a running container
+
+```
+docker exec -i -t 589f2ad30138 /bin/bash
+```
+
+---
+
+### Docker volume
+
+TODO
+
+---
+
+### Logging
+
+TODO
+
+---
+
+### Monitoring Docker
+
+TODO
+
+---
+
+## Ch.7 : Debugging containers
+
+
+### Process output
+
+We can display the running process of a container with :
+```
+docker top 106ead0d55af
+```
+
+TODO : complete
+
+---
+
+### Process inspection
+
+TODO
+
+---
+
+### Controlling processes
+
+TODO
+
+---
+
+### Network inspection
+
+We can list the networks of a container with :
+```
+docker network ls
+```
+
+And inspect a network in detail with :
+```
+docker network inspect bridge
+```
+
+TODO : complete
+
+---
+
+### Image history
+
+We can show the history of an image with :
+```
+docker history redis:latest
+```
+
+---
+
+### Inspecting a container
+
+TODO
+
+---
+
+### Filesystem inspection
+
+TODO
+
+---
+
+## Ch.8 : Exploring Docker Compose
+
+### Configuring Docker Compose
+
+
+### Launching services
+
+Once you are in the appropriate directory, you can confirm that the configuration is correct by running:
+```
+docker-compose config
+```
+
+You can build any containers that you need by using the build option. Any services that use images will be skipped.
+```
+docker-compose build
+```
+
+You can start up your web service in the background by running the following command:
+```
+docker-compose up -d
+```
+
+Once everything comes up, we can take a quick look at the logs for all of the services:
+```
+docker-compose logs
+```
+
+To get an overview of the running containers and the processes running in them, we can use :
+```
+docker-compose top
+```
+
+Inside the docker-compose we can either reference a preexisting image or specify how to build it.
+
+---
+
+Compose file documentation :
+https://docs.docker.com/compose/compose-file/

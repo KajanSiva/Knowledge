@@ -1,19 +1,23 @@
-Build a Docker image :
-````
-docker build -t tag_name .
+# Docker cheatsheet
+
+## Containers
+
+
+Creating a container from an image :
+```
+docker create -p 6379:6379 redis:2.8
 ```
 
 ---
 
-Run a command in a running container :
+Start a non-running container :
 ```
-docker run --rm -ti 8a773166616c /bin/bash
+docker start 6b785f78b75e
 ```
-Useful for debugging
 
 ---
 
-Run an image into a container :
+Run an image into a container (execute `docker create` and `docker start`) :
 ```
 docker run -d -p 8080:8080 -e WHO="Sean and Karl" example/docker-node-hello:latest
 ```
@@ -36,16 +40,24 @@ docker ps -a
 
 ---
 
-Creating a container from an image :
+Run a command on a container :
 ```
-docker create -p 6379:6379 redis:2.8
+docker run --rm -ti 8a773166616c /bin/bash
+```
+Useful for debugging
+
+---
+
+To get inside a running container :
+```
+docker exec -i -t 589f2ad30138 /bin/bash
 ```
 
 ---
 
-Start a non-running container :
+List opened ports of a container :
 ```
-docker start 6b785f78b75e
+docker container port 589f2ad30138
 ```
 
 ---
@@ -79,8 +91,65 @@ docker rm 92b797f12af1
 
 ---
 
+To delete all of the containers on the Docker hosts, use the following command:
+```
+docker rm $(docker ps -a -q)
+```
+
+---
+
+## Images
+
+Build a Docker image :
+```
+docker build -t tag_name .
+```
+
+---
+
+List all the images :
+```
+docker images
+```
+
+---
+
+Remove an image :
+```
+docker rmi 873c28292d23
+```
+
+---
+
+Remove all images and containers :
+```
+docker system prune
+```
+
+---
+
+To delete all the images on the Docker host, this command will get the job done:
+```
+docker rmi $(docker images -q)
+```
+
+---
+
 Show the history of an image :
 ```
 docker history
 ```
 
+---
+
+## Network
+
+```
+docker network ls
+docker network inspect
+docker network create --driver
+docker network connect
+docker network disconnet
+```
+
+---
