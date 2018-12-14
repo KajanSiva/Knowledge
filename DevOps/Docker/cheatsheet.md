@@ -25,6 +25,9 @@ Options :
 - `-d` : detach and run in the background
 - `-p` : attach port of the Docker container into a port of the host
 - `-e` : Set environment variables
+- `--mount` : Attach a filesystem mount to the container
+
+By default, volumes are persisted. But we can define non persisted volums with the tmpfs type. Useful to run test containers : https://docs.docker.com/storage/tmpfs/
 
 ---
 
@@ -84,7 +87,7 @@ docker unpause 6b785f78b75e
 
 ---
 
-Rmove a non-running container :
+Remove a non-running container :
 ```
 docker rm 92b797f12af1
 ```
